@@ -52,19 +52,19 @@ module.exports = postcss.plugin('postcss-flex-short', (options) => {
       parent.append('display: flex;')
 
       if (styleOptions.maxWidth.length > 0) {
-        parent.append('width: 100%; max-width: ' + styleOptions.maxWidth + ';')
+        parent.append(`width: 100%;max-width: ${styleOptions.maxWidth}`)
       }
       if (styleOptions.direction.length > 0) {
-        parent.append('flex-direction: ' + styleOptions.direction + ';')
+        parent.append(`flex-direction: ${styleOptions.direction};`)
       }
       if (styleOptions.align.length > 0) {
-        parent.append('align-items: ' + styleOptions.align + ';')
+        parent.append(`align-items: ${styleOptions.align};`)
       }
       if (styleOptions.justify.length > 0) {
-        parent.append('justify-content: ' + styleOptions.justify + ';')
+        parent.append(`justify-content: ${styleOptions.justify};`)
       }
       if (styleOptions.wrap.length > 0) {
-        parent.append('flex-wrap: ' + styleOptions.wrap + ';')
+        parent.append(`flex-wrap: ${styleOptions.wrap};`)
       }
 
       // Remove old elements
@@ -72,7 +72,7 @@ module.exports = postcss.plugin('postcss-flex-short', (options) => {
     }
 
     // Flex column
-    const flexColumn = function (decl, params) {
+    const flexColumn = (decl, params) => {
       const parseParams = params.join(' ').split(', ')
 
       // Params default
@@ -123,25 +123,25 @@ module.exports = postcss.plugin('postcss-flex-short', (options) => {
 
       // Set params
       if (styleOptions.maxWidth.length > 0) {
-        parent.append('width: 100%; max-width: ' + styleOptions.maxWidth + ';')
+        parent.append(`width: 100%;max-width: ${styleOptions.maxWidth}`)
       }
       if (styleOptions.flex.length > 0) {
-        parent.append('flex: ' + styleOptions.flex + ';')
+        parent.append(`flex: ${styleOptions.flex};`)
       }
       if (styleOptions.basis.length > 0) {
-        parent.append('flex-basis: ' + styleOptions.basis + ';')
+        parent.append(`flex-basis: ${styleOptions.basis};`)
       }
       if (styleOptions.grow.length > 0) {
-        parent.append('flex-grow: ' + styleOptions.grow + ';')
+        parent.append(`flex-grow: ${styleOptions.grow};`)
       }
       if (styleOptions.shrink.length > 0) {
-        parent.append('flex-shrink: ' + styleOptions.shrink + ';')
+        parent.append(`flex-shrink: ${styleOptions.shrink};`)
       }
       if (styleOptions.align.length > 0) {
-        parent.append('align-self: ' + styleOptions.align + ';')
+        parent.append(`align-self: ${styleOptions.align};`)
       }
       if (styleOptions.justify.length > 0) {
-        parent.append('justify-self: ' + styleOptions.justify + ';')
+        parent.append(`justify-self: ${styleOptions.justify};`)
       }
 
       // Remove old elements
@@ -149,13 +149,13 @@ module.exports = postcss.plugin('postcss-flex-short', (options) => {
     }
 
     // Search tag flex container
-    css.walkDecls('flex-container', function (decl) {
+    css.walkDecls('flex-container', (decl) => {
       const params = postcss.list.space(decl.value)
       flexContainer(decl, params)
     })
 
     // Search tag flex column
-    css.walkDecls('flex-column', function (decl) {
+    css.walkDecls('flex-column', (decl) => {
       const params = postcss.list.space(decl.value)
       flexColumn(decl, params)
     })
